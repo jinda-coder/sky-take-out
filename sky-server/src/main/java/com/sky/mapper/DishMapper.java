@@ -12,10 +12,12 @@ import org.springframework.data.domain.Page;
 
 import java.awt.*;
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
 
 @Mapper
 public interface DishMapper {
-
     @Insert("insert into dish (name, category_id, price, " +
             "image, description, create_time, update_time, " +
             "create_user,update_user, status)\n" +
@@ -38,4 +40,11 @@ public interface DishMapper {
     void updateStatus(@Param("status") Integer status,@Param("id") Long id);
 
     List<Dish> selectByCategoryId(Integer categoryId);
+    /**
+     * 根据分类id查询菜品数量
+     * @param categoryId
+     * @return
+     */
+    @Select("select count(id) from dish where category_id = #{categoryId}")
+    Integer countByCategoryId(Long categoryId);
 }
