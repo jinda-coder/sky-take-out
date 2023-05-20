@@ -98,6 +98,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public PageResult select(EmployeePageQueryDTO dto) {
         PageHelper.startPage(dto.getPage(),dto.getPageSize());
         Page<Employee> page =(Page<Employee>)employeeMapper.selectByName(dto);
+        //隐藏员工的敏感信息
+        page.forEach(emp ->{
+            emp.setPassword("*********************************");
+            emp.setIdNumber("*************************************************");});
         PageResult pageResult = PageResult.builder()
                 .total(page.getTotal())
                 .records(page.getResult())
