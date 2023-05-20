@@ -1,5 +1,6 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
@@ -12,6 +13,7 @@ import com.sky.exception.AccountLockedException;
 import com.sky.exception.AccountNotFoundException;
 import com.sky.exception.PasswordErrorException;
 import com.sky.mapper.EmployeeMapper;
+import com.sky.result.PageResult;
 import com.sky.service.EmployeeService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -85,11 +87,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.save(employee);
     }
 
-//    @Override
-//    public List<Employee> select(EmployeePageQueryDTO dto) {
-//        PageHelper.startPage(dto.getPage(),dto.getPageSize());
-//        List<Employee> select = employeeMapper.select(dto);
-//        //todo
-//        return null;
-//    }
+    /**
+     * 员工分页查询
+     * @param dto
+     * @return
+     */
+    @Override
+    @ApiOperation("员工分页查询")
+    public PageResult select(EmployeePageQueryDTO dto) {
+        PageHelper.startPage(dto.getPage(),dto.getPageSize());
+        Page<Employee> page =(Page<Employee>)employeeMapper.selectByName(dto);
+        PageResult pageResult = PageResult.builder()
+                .total(page.getTotal())
+                .records(page.getResult())
+                .build();
+
+        return pageResult;
+    }
 }

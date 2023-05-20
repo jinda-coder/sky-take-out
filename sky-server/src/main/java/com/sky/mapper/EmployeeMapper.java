@@ -2,6 +2,7 @@ package com.sky.mapper;
 
 import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
+import com.sky.result.PageResult;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -32,4 +33,7 @@ public interface EmployeeMapper {
     void save(Employee employee);
     @Select("select * from employee")
     List<Employee> select(EmployeePageQueryDTO dto);
+
+    List<Employee> selectByName(EmployeePageQueryDTO dto);
+
 }

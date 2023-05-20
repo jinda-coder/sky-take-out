@@ -7,6 +7,7 @@ import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
 import com.sky.properties.JwtProperties;
+import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.EmployeeService;
 import com.sky.utils.JwtUtil;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -87,10 +89,15 @@ public class EmployeeController {
         employeeService.save(dto);
         return Result.success();
     }
-//    @GetMapping("/page")
-//    public Result<Employee> select(@RequestBody EmployeePageQueryDTO dto){
-//        employeeService.select(dto);
-//        //TODO
-//        return null;
-//    }
+
+    /**
+     * 员工分页查询
+     * @param dto
+     * @return
+     */
+    @GetMapping("/page")
+    public Result<PageResult> select(EmployeePageQueryDTO dto){
+        PageResult result = employeeService.select(dto);
+        return Result.success(result);
+    }
 }
