@@ -21,4 +21,6 @@ public interface EmployeeService {
     PageResult select(EmployeePageQueryDTO dto);
 
     void disable(Integer status,Integer id);
+
+    Employee selectById(Integer id);
 }

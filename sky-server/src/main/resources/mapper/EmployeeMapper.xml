@@ -11,7 +11,6 @@
         </where>
         order by create_time desc
     </select>
-
     <update id="disable">
         update employee
     <set>
@@ -19,4 +18,8 @@
     </set>
     where id = #{id}
     </update>
+
+    <select id="selectById" resultType="com.sky.entity.Employee">
+        select * from employee where id = #{id}
+    </select>
 </mapper>

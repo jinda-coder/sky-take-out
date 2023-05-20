@@ -111,4 +111,15 @@ public class EmployeeController {
         employeeService.disable(status,id);
         return Result.success();
     }
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Result<Employee> selectById(@PathVariable Integer id){
+        Employee employee = employeeService.selectById(id);
+        return Result.success(employee);
+    }
 }

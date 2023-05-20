@@ -116,4 +116,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void disable(Integer status,Integer id) {
         employeeMapper.disable(status,id);
     }
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee selectById(Integer id) {
+        Employee employee = employeeMapper.selectById(id);
+        employee.setPassword("*****************");
+        return employee;
+    }
 }

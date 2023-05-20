@@ -38,4 +38,6 @@ public interface EmployeeMapper {
     List<Employee> selectByName(EmployeePageQueryDTO dto);
 
     void disable(@Param("status") Integer status, @Param("id") Integer id);
+
+    Employee selectById(Integer id);
 }
