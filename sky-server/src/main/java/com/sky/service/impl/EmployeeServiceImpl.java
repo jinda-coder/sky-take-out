@@ -109,4 +109,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return pageResult;
     }
+    /**
+     * 禁用员工
+     */
+    @Override
+    public void disable(Integer status,Integer id) {
+        employeeMapper.disable(status,id);
+    }
 }

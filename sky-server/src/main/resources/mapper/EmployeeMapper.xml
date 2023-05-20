@@ -11,4 +11,12 @@
         </where>
         order by create_time desc
     </select>
+
+    <update id="disable">
+        update employee
+    <set>
+        status = #{status}
+    </set>
+    where id = #{id}
+    </update>
 </mapper>

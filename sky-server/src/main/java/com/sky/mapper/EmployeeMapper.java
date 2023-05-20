@@ -5,6 +5,7 @@ import com.sky.entity.Employee;
 import com.sky.result.PageResult;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -36,4 +37,5 @@ public interface EmployeeMapper {
 
     List<Employee> selectByName(EmployeePageQueryDTO dto);
 
+    void disable(@Param("status") Integer status, @Param("id") Integer id);
 }

@@ -19,4 +19,6 @@ public interface EmployeeService {
 
     void save(EmployeeDTO dto);
     PageResult select(EmployeePageQueryDTO dto);
+
+    void disable(Integer status,Integer id);
 }

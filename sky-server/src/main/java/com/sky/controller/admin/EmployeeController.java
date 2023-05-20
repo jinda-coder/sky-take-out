@@ -100,4 +100,15 @@ public class EmployeeController {
         PageResult result = employeeService.select(dto);
         return Result.success(result);
     }
+
+    /**
+     * 禁用员工
+     * @param status
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    public Result disable(@PathVariable Integer status,Integer id){
+        employeeService.disable(status,id);
+        return Result.success();
+    }
 }
