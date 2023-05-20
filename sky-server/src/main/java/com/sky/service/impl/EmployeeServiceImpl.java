@@ -113,8 +113,12 @@ public class EmployeeServiceImpl implements EmployeeService {
      * 禁用员工
      */
     @Override
-    public void disable(Integer status,Integer id) {
-        employeeMapper.disable(status,id);
+    public void disable(Integer status,Long id) {
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+        employeeMapper.disable(employee);
     }
     /**
      * 根据id查询员工信息
@@ -126,5 +130,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeMapper.selectById(id);
         employee.setPassword("*****************");
         return employee;
+    }
+
+    @Override
+    public void updateEmployeeInfo(EmployeeDTO dto) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(dto,employee);
+        employeeMapper.disable(employee);
     }
 }

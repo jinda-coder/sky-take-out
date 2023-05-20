@@ -107,7 +107,7 @@ public class EmployeeController {
      * @return
      */
     @PostMapping("/status/{status}")
-    public Result disable(@PathVariable Integer status,Integer id){
+    public Result disable(@PathVariable Integer status,Long id){
         employeeService.disable(status,id);
         return Result.success();
     }
@@ -121,5 +121,10 @@ public class EmployeeController {
     public Result<Employee> selectById(@PathVariable Integer id){
         Employee employee = employeeService.selectById(id);
         return Result.success(employee);
+    }
+    @PutMapping
+    public Result updateEmployeeInfo(@RequestBody EmployeeDTO dto){
+        employeeService.updateEmployeeInfo(dto);
+        return Result.success();
     }
 }

@@ -37,7 +37,8 @@ public interface EmployeeMapper {
 
     List<Employee> selectByName(EmployeePageQueryDTO dto);
 
-    void disable(@Param("status") Integer status, @Param("id") Integer id);
+    void disable(Employee employee);
 
     Employee selectById(Integer id);
+
 }
