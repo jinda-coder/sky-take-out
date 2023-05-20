@@ -1,10 +1,12 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
+import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
 import com.sky.exception.AccountLockedException;
 import com.sky.exception.AccountNotFoundException;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -81,4 +84,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setUpdateUser(1L);
         employeeMapper.save(employee);
     }
+
+//    @Override
+//    public List<Employee> select(EmployeePageQueryDTO dto) {
+//        PageHelper.startPage(dto.getPage(),dto.getPageSize());
+//        List<Employee> select = employeeMapper.select(dto);
+//        //todo
+//        return null;
+//    }
 }
