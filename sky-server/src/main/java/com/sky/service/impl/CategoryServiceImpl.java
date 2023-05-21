@@ -45,4 +45,10 @@ public class CategoryServiceImpl implements CategoryService {
         Page<Category> page = categoryMapper.selectByPage(categoryPageQueryDTO);
         return new PageResult(page.getTotal(), page.getResult());
     }
+
+    @Override
+    public List<Category> list(Integer type) {
+        List<Category> list = categoryMapper.list(type);
+        return list;
+    }
 }

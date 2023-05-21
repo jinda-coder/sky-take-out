@@ -14,4 +14,7 @@ public interface CategoryService {
      * @return
      */
     PageResult selectByPage(CategoryPageQueryDTO categoryPageQueryDTO);
+
+    List<Category> list(Integer type);
+
 }

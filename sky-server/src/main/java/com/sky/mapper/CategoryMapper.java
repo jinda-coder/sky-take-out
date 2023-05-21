@@ -17,4 +17,7 @@ public interface CategoryMapper {
      * @return
      */
     Page<Category> selectByPage(CategoryPageQueryDTO categoryPageQueryDTO);
+
+    List<Category> list(Integer type);
+
 }

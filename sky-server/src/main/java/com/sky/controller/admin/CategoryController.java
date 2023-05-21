@@ -36,7 +36,9 @@ public class CategoryController {
         PageResult pageResult = categoryService.selectByPage(categoryPageQueryDTO);
         return Result.success(pageResult);
     }
-
-
-
+    @GetMapping("/list")
+    public Result list(Integer type){
+        List<Category> list = categoryService.list(type);
+        return Result.success(list);
+    }
 }
