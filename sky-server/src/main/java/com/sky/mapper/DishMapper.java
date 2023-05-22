@@ -1,6 +1,8 @@
 package com.sky.mapper;
 
 import com.sky.annotation.AutoFill;
+import com.sky.dto.DishDTO;
+import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.enumeration.OperationType;
 import com.sky.result.PageResult;
@@ -24,7 +26,7 @@ public interface DishMapper {
     @AutoFill
     void insert(Dish dish);
 
-    List<DishVO> selectAll();
+    List<DishVO> selectAll(DishPageQueryDTO dto);
 
     void delete(List<Long> ids);
 

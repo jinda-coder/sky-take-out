@@ -57,8 +57,7 @@ public class DishServiceImpl implements DishService {
     public PageResult selectByPage(DishPageQueryDTO dto) {
         DishVO dishVO = new DishVO();
         PageHelper.startPage(dto.getPage(),dto.getPageSize());
-        Page<DishVO> dishVOS = (Page<DishVO>)dishMapper.selectAll();
-        BeanUtils.copyProperties(dto,dishVO);
+        Page<DishVO> dishVOS = (Page<DishVO>)dishMapper.selectAll(dto);
         PageResult build = PageResult.builder()
                 .total(dishVOS.getTotal())
                 .records(dishVOS.getResult())
