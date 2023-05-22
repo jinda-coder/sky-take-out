@@ -9,6 +9,7 @@ import com.sky.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -40,5 +41,43 @@ public class CategoryController {
     public Result list(Integer type){
         List<Category> list = categoryService.list(type);
         return Result.success(list);
+    }
+
+    /**
+     * 添加分类
+     * @param dto
+     * @return
+     */
+    @PostMapping
+    public Result add(@RequestBody CategoryDTO dto){
+        categoryService.add(dto);
+        return Result.success();
+    }
+
+    /**
+     * 删除分类
+     * @param id
+     * @return
+     */
+    @DeleteMapping
+    public Result delete(Integer id){
+        categoryService.delete(id);
+        return Result.success();
+    }
+
+    /**
+     * 修改菜品分类
+     * @param dto
+     * @return
+     */
+    @PutMapping
+    public Result updateInfo(@RequestBody CategoryDTO dto){
+        categoryService.updateInfo(dto);
+        return Result.success();
+    }
+    @PostMapping("/status/{status}")
+    public Result disable(@PathVariable() Integer status, @Param("id") Long id){
+        categoryService.disable(status,id);
+        return Result.success();
     }
 }

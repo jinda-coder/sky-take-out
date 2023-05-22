@@ -9,4 +9,11 @@
              (#{flavor.dishId},#{flavor.name},#{flavor.value})
          </foreach>
     </insert>
+    <select id="selectByDishId" resultType="com.sky.entity.DishFlavor">
+        select * from dish_flavor where dish_id = #{id}
+    </select>
+
+    <delete id="delete">
+        delete from dish_flavor where dish_id = #{id}
+    </delete>
 </mapper>

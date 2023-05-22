@@ -11,4 +11,8 @@ import java.util.List;
 public interface DishFlavorMapper {
 
     void insert(@Param("flavors") List<DishFlavor> flavor);
+
+    List<DishFlavor> selectByDishId(Long id);
+
+    void delete(Long id);
 }

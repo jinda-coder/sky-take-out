@@ -51,4 +51,37 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> list = categoryMapper.list(type);
         return list;
     }
+    /**
+     * 添加分类
+     * @param dto
+     * @return
+     */
+    @Override
+    public void add(CategoryDTO dto) {
+        Category category = new Category();
+        BeanUtils.copyProperties(dto,category);
+        category.setStatus(StatusConstant.ENABLE);
+        categoryMapper.add(category);
+    }
+    /**
+     * 删除分类
+     * @param id
+     * @return
+     */
+    @Override
+    public void delete(Integer id) {
+        categoryMapper.delete(id);
+    }
+
+    @Override
+    public void updateInfo(CategoryDTO dto) {
+        Category category = new Category();
+        BeanUtils.copyProperties(dto,category);
+        categoryMapper.updateInfo(category);
+    }
+
+    @Override
+    public void disable(Integer status, Long id) {
+        categoryMapper.disable(status,id);
+    }
 }

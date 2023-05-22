@@ -13,4 +13,10 @@ public interface DishService {
 
     PageResult selectByPage(DishPageQueryDTO dto);
     void delete(List<Long> ids);
+
+    void updateInfo(DishDTO dto);
+
+    DishVO selectById(Long id);
+
+    void updateStatus(Integer status,Long id);
 }
