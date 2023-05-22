@@ -27,4 +27,8 @@ public interface DishMapper {
     void insert(Dish dish);
 
     List<DishVO> selectAll();
+
+    void delete(List<Long> ids);
+
+    Dish getById(Long id);
 }

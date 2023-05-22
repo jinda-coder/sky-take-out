@@ -6,3 +6,9 @@ sky:
     database: sky_take_out
     username: root
     password: jinda111
+  # 阿里云配置
+  alioss:
+    endpoint: oss-cn-qingdao.aliyuncs.com
+    accessKeyId: LTAI5t5dQfxTJrR3nqYdhSVb
+    accessKeySecret: qg9eR3mKl6VGvXxtA5yZh0c5KTyd2I
+    bucketName: aliyunofjinda

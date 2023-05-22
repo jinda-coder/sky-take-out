@@ -12,4 +12,5 @@ public interface DishService {
     void save(DishDTO dto);
 
     PageResult selectByPage(DishPageQueryDTO dto);
+    void delete(List<Long> ids);
 }
