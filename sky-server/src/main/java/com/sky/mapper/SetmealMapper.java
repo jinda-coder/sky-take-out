@@ -19,7 +19,7 @@ public interface SetmealMapper {
 
     Page<SetmealVO> selectByPage(SetmealPageQueryDTO dto);
 
-    Setmeal selectById(Long id);
+    SetmealVO selectById(Long id);
 
     void updateInfo(Setmeal setmeal);
 }

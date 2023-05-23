@@ -6,4 +6,7 @@
     <insert id="insert">
         insert into setmeal_dish (setmeal_id,dish_id,name,price,copies) values (#{setmealId},#{dishId},#{name},#{price},#{copies})
     </insert>
+    <select id="selectBySetmealId" resultType="com.sky.entity.SetmealDish">
+        select * from setmeal_dish where setmeal_id = #{id}
+    </select>
 </mapper>

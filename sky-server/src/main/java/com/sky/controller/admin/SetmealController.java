@@ -6,6 +6,7 @@ import com.sky.entity.Setmeal;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.SetmealService;
+import com.sky.vo.SetmealVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -50,9 +51,9 @@ public class SetmealController {
      */
     @GetMapping("/{id}")
     @ApiOperation("根据id查询套餐")
-    public Result selectById(@PathVariable Long id){
-        Setmeal setmeal = setmealService.selectById(id);
-        return Result.success(setmeal);
+    public Result<SetmealVO> selectById(@PathVariable Long id){
+        SetmealVO setmealVO = setmealService.selectById(id);
+        return Result.success(setmealVO);
     }
 
     /**

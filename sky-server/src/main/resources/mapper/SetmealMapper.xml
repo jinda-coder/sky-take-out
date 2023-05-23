@@ -32,7 +32,7 @@
         </if>
         </where>
     </select>
-    <select id="selectById" resultType="com.sky.entity.Setmeal">
+    <select id="selectById" resultType="com.sky.vo.SetmealVO">
         select * from setmeal where id = #{id}
     </select>
     <update id="updateInfo">

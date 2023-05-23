@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.*;
+import java.util.List;
+
 @Service
 public class SetmealServiceImpl implements SetmealService {
     @Autowired
@@ -65,8 +68,12 @@ public class SetmealServiceImpl implements SetmealService {
      * @return
      */
     @Override
-    public Setmeal selectById(Long id) {
-        return setmealMapper.selectById(id);
+    public SetmealVO selectById(Long id) {
+        SetmealVO setmealVO = setmealMapper.selectById(id);
+        //根据套餐id获取套餐内包含的菜品信息
+        List<SetmealDish> setmealDishes = setmealDishMapper.selectBySetmealId(id);
+        setmealVO.setSetmealDishes(setmealDishes);
+        return setmealVO;
     }
     /**
      * 修改套餐
