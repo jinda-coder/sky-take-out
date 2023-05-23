@@ -36,4 +36,6 @@ public interface DishMapper {
     Dish selectById(Long id);
     @Update("update dish set status = #{status} where id = #{id}")
     void updateStatus(@Param("status") Integer status,@Param("id") Long id);
+
+    List<Dish> selectByCategoryId(Integer categoryId);
 }

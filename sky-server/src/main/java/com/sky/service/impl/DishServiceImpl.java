@@ -11,6 +11,7 @@ import com.sky.entity.DishFlavor;
 import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
+import com.sky.mapper.SetmealMapper;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.DishService;
@@ -30,6 +31,8 @@ public class DishServiceImpl implements DishService {
     private DishMapper dishMapper;
     @Autowired
     private DishFlavorMapper dishFlavorMapper;
+    @Autowired
+    private SetmealMapper setmealMapper;
 
     /**
      * 添加菜品
@@ -70,6 +73,7 @@ public class DishServiceImpl implements DishService {
      * @param ids
      * @return
      */
+    @Transactional(rollbackFor = Exception.class)
     public void delete(List<Long> ids){
         for (Long id : ids) {
             Dish dish = dishMapper.getById(id);
@@ -78,7 +82,17 @@ public class DishServiceImpl implements DishService {
                 throw new DeletionNotAllowedException(MessageConstant.DISH_ON_SALE);
             }
         }
+        //判断当前菜品是否能够删除---是否被套餐关联了？？
+        List<Long> setmealIds = setmealMapper.getSetmealIdsByDishIds(ids);
+        if (setmealIds != null && setmealIds.size() > 0) {
+            //当前菜品被套餐关联了，不能删除
+            throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
+        }
         dishMapper.delete(ids);
+        for (Long id : ids) {
+            //删除菜品关联的口味数据
+            dishFlavorMapper.delete(id);//后绪步骤实现
+        }
     }
 
     /**
@@ -120,5 +134,11 @@ public class DishServiceImpl implements DishService {
     @Override
     public void updateStatus(Integer status,Long id) {
         dishMapper.updateStatus(status,id);
+    }
+
+    @Override
+    public List<Dish> findByCategoryId(Integer categoryId) {
+        List<Dish> list = dishMapper.selectByCategoryId(categoryId);
+        return list;
     }
 }

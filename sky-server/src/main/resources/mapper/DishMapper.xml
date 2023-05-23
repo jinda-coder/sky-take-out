@@ -19,8 +19,8 @@
     </select>
     <delete id="delete">
         delete from dish where id in
-                         <foreach collection="ids" open="(" close=")" separator="," item="ids">
-                             (#{ids})
+                         <foreach collection="ids" open="(" close=")" separator="," item="id">
+                             #{id}
                          </foreach>
     </delete>
     <select id="getById" resultType="com.sky.entity.Dish">
@@ -34,5 +34,6 @@
     <select id="selectById" resultType="com.sky.entity.Dish">
         select * from dish where id = #{id}
     </select>
-
-</mapper>
+    <select id="selectByCategoryId" resultType="com.sky.entity.Dish">
+        select * from dish where category_id = #{categoryId}
+    </select></mapper>
