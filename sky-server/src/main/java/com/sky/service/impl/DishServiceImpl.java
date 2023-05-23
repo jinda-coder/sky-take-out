@@ -142,21 +142,14 @@ public class DishServiceImpl implements DishService {
     public void updateStatus(Integer status,Long id) {
         //更改菜品的状态
         dishMapper.updateStatus(status,id);
-//        //判断要更改的状态是禁用还是启用，若是禁用，则相关联的套餐也需要禁用
-//        if (status == StatusConstant.DISABLE){
-//            //根据菜品id查询是否有关联的套餐
-//            List<SetmealDish> setmealDishes = setmealDishMapper.selectByDishId(id);
-//            if (setmealDishes != null){
-//TODO
-//            }
-//        }
+//        //判断要更改的状态是禁用还是启用，若是禁用，则相关联的套餐也需要禁用//
+        //上面的需求已经用其他方法实现，如果菜品的状态为禁售状态，直接不返回给前端即可
     }
 
     @Override
     public List<Dish> findByCategoryId(Integer categoryId) {
         List<Dish> list = dishMapper.selectByCategoryId(categoryId);
         //筛选集合中的菜品，若菜品的状态为0，则不返回给前端
-        List<Dish> resultList = list.stream().filter(d -> d.getStatus() == StatusConstant.ENABLE).collect(Collectors.toList());
-        return resultList;
+        return list.stream().filter(d -> d.getStatus() == StatusConstant.ENABLE).collect(Collectors.toList());
     }
 }

@@ -6,9 +6,12 @@ import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
+import com.sky.entity.Dish;
 import com.sky.entity.Setmeal;
 import com.sky.entity.SetmealDish;
+import com.sky.exception.BaseException;
 import com.sky.exception.DeletionNotAllowedException;
+import com.sky.mapper.DishMapper;
 import com.sky.mapper.SetmealDishMapper;
 import com.sky.mapper.SetmealMapper;
 import com.sky.result.PageResult;
@@ -28,6 +31,8 @@ public class SetmealServiceImpl implements SetmealService {
     private SetmealMapper setmealMapper;
     @Autowired
     private SetmealDishMapper setmealDishMapper;
+    @Autowired
+    private DishMapper dishMapper;
 
     /**
      * 新增套餐
@@ -130,6 +135,18 @@ public class SetmealServiceImpl implements SetmealService {
      */
     @Override
     public void disableStatus(Integer status,Integer id) {
+        //判断需要修改的状态，若要启售套餐，需要先判断套餐内包含的菜品是否有处于禁售状态的菜品
+        if (status == StatusConstant.ENABLE){
+            List<SetmealDish> setmealDishes = setmealDishMapper.selectBySetmealId((long) id);
+            for (SetmealDish setmealDish : setmealDishes) {
+                //根据菜品id查询菜品
+                Dish dish = dishMapper.selectById(setmealDish.getDishId());
+                if (dish.getStatus() == StatusConstant.DISABLE){
+                    //若菜品中有禁售状态的菜品 则抛出异常 禁止启售该套餐
+                    throw new BaseException(MessageConstant.SETMEAL_ENABLE_FAILED);
+                }
+            }
+        }
         setmealMapper.disableStatus(status,id);
     }
 }
