@@ -8,7 +8,7 @@
             #{dishId}
         </foreach>
     </select>
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into setmeal (category_id,name,
                              price,description,
                              image,create_time,
@@ -32,4 +32,11 @@
         </if>
         </where>
     </select>
+    <select id="selectById" resultType="com.sky.entity.Setmeal">
+        select * from setmeal where id = #{id}
+    </select>
+    <update id="updateInfo">
+        update setmeal set category_id = #{categoryId},name = #{name},price = #{price},status = #{status},description = #{description},image = #{image},update_time = #{updateTime},update_user = #{updateUser}
+where id = #{id}
+    </update>
 </mapper>

@@ -6,6 +6,7 @@ import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.vo.SetmealVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface SetmealMapper {
     void insert(Setmeal setmeal);
 
     Page<SetmealVO> selectByPage(SetmealPageQueryDTO dto);
+
+    Setmeal selectById(Long id);
+
+    void updateInfo(Setmeal setmeal);
 }

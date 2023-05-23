@@ -2,6 +2,7 @@ package com.sky.controller.admin;
 
 import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
+import com.sky.entity.Setmeal;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.SetmealService;
@@ -40,5 +41,29 @@ public class SetmealController {
     public Result<PageResult> selectByPage(SetmealPageQueryDTO dto){
         PageResult pageResult = setmealService.selectByPage(dto);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 根据id查询套餐
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询套餐")
+    public Result selectById(@PathVariable Long id){
+        Setmeal setmeal = setmealService.selectById(id);
+        return Result.success(setmeal);
+    }
+
+    /**
+     * 修改套餐
+     * @param dto
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("修改套餐")
+    public Result updateInfo(@RequestBody SetmealDTO dto){
+        setmealService.updateInfo(dto);
+        return Result.success();
     }
 }
