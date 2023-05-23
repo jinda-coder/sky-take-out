@@ -112,4 +112,14 @@ public class SetmealServiceImpl implements SetmealService {
         //根据套餐id删除关联的菜品信息
         setmealDishMapper.deleteByIds(ids);
     }
+    /**
+     * 套餐状态修改
+     * @param status
+     * @param id
+     * @return
+     */
+    @Override
+    public void disableStatus(Integer status,Integer id) {
+        setmealMapper.disableStatus(status,id);
+    }
 }

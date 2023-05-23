@@ -16,4 +16,6 @@ public interface SetmealService {
     void updateInfo(SetmealDTO dto);
 
     void deleteByIds(Integer[] ids);
+
+    void disableStatus(Integer status,Integer id);
 }

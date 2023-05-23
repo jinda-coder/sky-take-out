@@ -27,4 +27,6 @@ public interface SetmealMapper {
 
     void deleteByIds(@Param("ids") Integer[] ids);
 
+    void disableStatus(@Param("status") Integer status,@Param("id") Integer id);
+
 }

@@ -45,4 +45,7 @@ where id = #{id}
                                 #{id}
                             </foreach>
     </delete>
+    <update id="disableStatus">
+        update setmeal set status = 0 where id = #{id}
+    </update>
 </mapper>

@@ -80,4 +80,17 @@ public class SetmealController {
         setmealService.deleteByIds(ids);
         return Result.success();
     }
+
+    /**
+     * 套餐状态修改
+     * @param status
+     * @param id
+     * @return
+     */
+    @ApiOperation("套餐状态修改")
+    @PostMapping("/status/{status}")
+    public Result disableStatus(@PathVariable Integer status,@Param("id") Integer id){
+        setmealService.disableStatus(status,id);
+        return Result.success();
+    }
 }
