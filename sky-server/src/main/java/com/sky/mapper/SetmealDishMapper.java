@@ -11,4 +11,6 @@ public interface SetmealDishMapper {
     void insert(SetmealDish setmealDish);
 
     List<SetmealDish> selectBySetmealId(Long id);
+
+    void deleteById(Long id);
 }
