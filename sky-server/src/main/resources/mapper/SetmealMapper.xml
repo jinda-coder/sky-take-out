@@ -39,4 +39,10 @@
         update setmeal set category_id = #{categoryId},name = #{name},price = #{price},status = #{status},description = #{description},image = #{image},update_time = #{updateTime},update_user = #{updateUser}
 where id = #{id}
     </update>
+    <delete id="deleteByIds">
+        delete from setmeal where id in
+                            <foreach collection="ids" item="id" open="(" close=")" separator=",">
+                                #{id}
+                            </foreach>
+    </delete>
 </mapper>

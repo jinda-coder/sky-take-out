@@ -99,4 +99,17 @@ public class SetmealServiceImpl implements SetmealService {
                     ,setmealDish.getCopies()));
         }
     }
+
+    /**
+     * 套餐删除
+     * @param ids
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteByIds(Integer[] ids) {
+        //根据id删除套餐
+        setmealMapper.deleteByIds(ids);
+        //根据套餐id删除关联的菜品信息
+        setmealDishMapper.deleteByIds(ids);
+    }
 }
