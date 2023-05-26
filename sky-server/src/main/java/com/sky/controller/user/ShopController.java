@@ -1,4 +1,4 @@
-package com.sky.controller.admin;
+package com.sky.controller.user;
 
 import com.sky.constant.ShopConstant;
 import com.sky.result.Result;
@@ -6,27 +6,16 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/admin/shop")
-@RestController
-@Api(tags = "管理端店铺相关接口")
+@RestController("userShopController")
+@RequestMapping("/user/shop")
+@Api("用户端店铺相关接口")
 public class ShopController {
     @Autowired
     private RedisTemplate redisTemplate;
-
-    /**
-     * 设置营业状态
-     * @param status
-     * @return
-     */
-    @PutMapping("/{status}")
-    @ApiOperation("设置营业状态")
-    public Result updateStatus(@PathVariable Integer status){
-        redisTemplate.opsForValue().set(ShopConstant.SHOP_STATUS_KEY,status);
-        return Result.success();
-    }
-
     /**
      * 获取营业状态
      * @return

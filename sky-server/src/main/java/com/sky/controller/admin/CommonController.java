@@ -22,6 +22,7 @@ public class CommonController {
     @Autowired
     AliOssUtil aliOssUtil;
     @PostMapping("/upload")
+    @ApiOperation("文件上传")
     public Result<String> upload(MultipartFile file){
         log.info("接收到的文件名称为{}",file.getOriginalFilename());
         try {
