@@ -1,4 +1,4 @@
-package com.sky.service.impl;
+package com.sky.service.admin.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -8,27 +8,20 @@ import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
-import com.sky.entity.SetmealDish;
-import com.sky.exception.BaseException;
 import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
 import com.sky.mapper.SetmealDishMapper;
 import com.sky.mapper.SetmealMapper;
 import com.sky.result.PageResult;
-import com.sky.result.Result;
-import com.sky.service.DishService;
+import com.sky.service.admin.DishService;
 import com.sky.vo.DishVO;
-import com.sky.vo.SetmealVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -150,7 +143,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> findByCategoryId(Integer categoryId) {
+    public List<Dish> findByCategoryId(Long categoryId) {
         List<Dish> list = dishMapper.selectByCategoryId(categoryId);
         //筛选集合中的菜品，若菜品的状态为0，则不返回给前端
         return list.stream().filter(d -> d.getStatus() == StatusConstant.ENABLE).collect(Collectors.toList());

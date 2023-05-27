@@ -39,7 +39,7 @@ public interface DishMapper {
     @Update("update dish set status = #{status} where id = #{id}")
     void updateStatus(@Param("status") Integer status,@Param("id") Long id);
 
-    List<Dish> selectByCategoryId(Integer categoryId);
+    List<Dish> selectByCategoryId(Long categoryId);
     /**
      * 根据分类id查询菜品数量
      * @param categoryId
@@ -47,4 +47,6 @@ public interface DishMapper {
      */
     @Select("select count(id) from dish where category_id = #{categoryId}")
     Integer countByCategoryId(Long categoryId);
+
+    List<Dish> list(Dish dish);
 }

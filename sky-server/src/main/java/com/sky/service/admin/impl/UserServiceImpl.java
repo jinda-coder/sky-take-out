@@ -1,4 +1,4 @@
-package com.sky.service.impl;
+package com.sky.service.admin.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sky.constant.JwtClaimsConstant;
@@ -8,11 +8,10 @@ import com.sky.entity.User;
 import com.sky.mapper.UserMapper;
 import com.sky.properties.JwtProperties;
 import com.sky.properties.WeChatProperties;
-import com.sky.service.UserService;
+import com.sky.service.admin.UserService;
 import com.sky.utils.HttpClientUtil;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.UserLoginVO;
-import org.apache.http.client.utils.HttpClientUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.sky.service;
+package com.sky.service.admin;
 
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
@@ -20,5 +20,5 @@ public interface DishService {
 
     void updateStatus(Integer status,Long id);
 
-    List<Dish>findByCategoryId(Integer categoryId);
+    List<Dish>findByCategoryId(Long categoryId);
 }

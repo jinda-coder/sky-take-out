@@ -1,8 +1,8 @@
-package com.sky.service.impl;
+package com.sky.service.admin.impl;
 
 import com.sky.entity.SetmealDish;
 import com.sky.mapper.SetmealDishMapper;
-import com.sky.service.SetmealDishService;
+import com.sky.service.admin.SetmealDishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

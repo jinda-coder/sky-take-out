@@ -36,4 +36,8 @@
     </select>
     <select id="selectByCategoryId" resultType="com.sky.entity.Dish">
         select * from dish where category_id = #{categoryId}
-    </select></mapper>
+    </select>
+    <select id="list" resultType="com.sky.entity.Dish">
+
+    </select>
+</mapper>

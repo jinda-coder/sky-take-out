@@ -2,7 +2,7 @@ package com.sky.controller.user;
 
 import com.sky.dto.UserLoginDTO;
 import com.sky.result.Result;
-import com.sky.service.UserService;
+import com.sky.service.admin.UserService;
 import com.sky.vo.UserLoginVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
