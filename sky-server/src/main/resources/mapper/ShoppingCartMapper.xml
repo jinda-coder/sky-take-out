@@ -27,4 +27,22 @@ values (#{name},#{image},#{userId},#{dishId},#{setmealId},#{dishFlavor},#{number
     <delete id="deleteByUserId">
         delete from shopping_cart where user_id = #{userId}
     </delete>
+    <select id="getByUserIdAndSetmealId" resultType="com.sky.entity.ShoppingCart">
+        select * from shopping_cart where user_id = #{userId} and setmeal_id = #{setmealId}
+    </select>
+    <delete id="deleteByUserIdAndSetmealId">
+        delete from shopping_cart where user_id = #{userId} and setmeal_id = #{setmealId}
+    </delete>
+    <select id="getByUserIdAndDishId" resultType="com.sky.entity.ShoppingCart">
+        select * from shopping_cart where user_id = #{userId} and dish_id = #{dishId}
+    </select>
+    <delete id="deleteByShoppingCart">
+        delete from shopping_cart where user_id = #{userId}
+            <if test="dishId != null">
+                and dish_id = #{dishId}
+            </if>
+            <if test="setmealId != null">
+                and setmeal_id = #{setmealId}
+            </if>
+    </delete>
 </mapper>

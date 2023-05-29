@@ -2,6 +2,7 @@ package com.sky.mapper;
 
 import com.sky.entity.ShoppingCart;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,12 @@ public interface ShoppingCartMapper {
     List<ShoppingCart> selectAll(Long userId);
 
     void deleteByUserId(Long userId);
+
+    ShoppingCart getByUserIdAndSetmealId(@Param("userId") Long userId, @Param("setmealId") Long setmealId);
+
+    void deleteByUserIdAndSetmealId(@Param("userId") Long userId, @Param("setmealId") Long setmealId);
+
+    ShoppingCart getByUserIdAndDishId(@Param("userId") Long userId,@Param("dishId") Long dishId);
+
+    void deleteByShoppingCart(ShoppingCart cart);
 }
