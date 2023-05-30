@@ -38,8 +38,15 @@ public class OrderController {
         PageResult pageResult = orderService.checkOrders(dto);
         return Result.success(pageResult);
     }
+
+    /**
+     * 查询订单详情
+     * @param id
+     * @return
+     */
     @GetMapping("/orderDetail/{id}")
     public Result<OrdersVO> checkOrderInfo(@PathVariable Long id){
-        return Result.success();
+        OrdersVO ordersVO = orderService.checkByOrderId(id);
+        return Result.success(ordersVO);
     }
 }

@@ -113,4 +113,12 @@ public class OrderServiceImpl implements OrderService {
                 .records(page.getResult())
                 .build();
     }
+
+    @Override
+    public OrdersVO checkByOrderId(Long id) {
+        OrdersVO ordersVO = orderMapper.getByOrderId(id);
+        List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(id);
+        ordersVO.setOrderDetailList(orderDetailList);
+        return ordersVO;
+    }
 }

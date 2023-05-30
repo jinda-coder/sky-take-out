@@ -15,4 +15,6 @@ public interface OrderMapper {
     Page<OrdersVO> getByUserId(Long currentId);
 
     Page<OrdersVO> getByDto(OrdersPageQueryDTO dto);
+
+    OrdersVO getByOrderId(Long id);
 }

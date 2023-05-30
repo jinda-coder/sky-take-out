@@ -26,4 +26,7 @@
             and status = #{status}
         </if>
     </select>
+    <select id="getByOrderId" resultType="com.sky.vo.OrdersVO">
+        select * from orders where id = #{orderId}
+    </select>
 </mapper>
