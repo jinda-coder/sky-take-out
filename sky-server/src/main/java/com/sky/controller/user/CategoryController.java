@@ -27,7 +27,7 @@ public class CategoryController {
      */
     @GetMapping("/list")
     @ApiOperation("查询分类")
-//    @Cacheable(cacheNames = "userCategoryCache",key = "")
+//    @Cacheable(cacheNames = "userCategoryCache",key = "#type?: all")
     public Result<List<Category>> list(Integer type) {
         List<Category> list = categoryService.list(type);
         return Result.success(list);

@@ -106,6 +106,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCart.setDishId(dto.getDishId());
         //设置套餐id
         shoppingCart.setSetmealId(dto.getSetmealId());
+        //设置口味
+        shoppingCart.setDishFlavor(dto.getDishFlavor());
         //根据菜品id或者套餐id查询购物车商品 查出来的一定是一个菜品种类或套餐种类
         ShoppingCart cart = shoppingCartMapper.getByShoppingCart(shoppingCart);
         //若商品数量大于1  数量减一

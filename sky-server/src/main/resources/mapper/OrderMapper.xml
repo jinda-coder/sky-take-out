@@ -14,4 +14,16 @@
                              #{consignee},#{estimatedDeliveryTime},
                             #{deliveryStatus},#{deliveryTime},#{packAmount},#{tablewareNumber},#{tablewareStatus})
     </insert>
+    <select id="getByUserId" resultType="com.sky.vo.OrdersVO">
+        select * from orders where user_id = #{userId}
+        <if test="status != null">
+            status = #{status}
+        </if>
+    </select>
+    <select id="getByDto" resultType="com.sky.vo.OrdersVO">
+        select * from orders where user_id = #{userId}
+        <if test="status != null">
+            and status = #{status}
+        </if>
+    </select>
 </mapper>

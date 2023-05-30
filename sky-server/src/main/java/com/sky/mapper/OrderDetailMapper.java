@@ -10,4 +10,5 @@ import java.util.List;
 public interface OrderDetailMapper {
     void insertBatch(@Param("odl") List<OrderDetail> orderDetailList);
 
+    List<OrderDetail> getByOrderId(Long id);
 }

@@ -10,6 +10,9 @@
         <if test="setmealId != null">
             and setmeal_id = #{setmealId}
         </if>
+        <if test="dishFlavor != null">
+            and dish_flavor = #{dishFlavor}
+        </if>
     </select>
     <insert id="insert">
         insert into shopping_cart (name,image,user_id,dish_id,setmeal_id,dish_flavor,number,amount,create_time)
@@ -45,6 +48,11 @@ values (#{name},#{image},#{userId},#{dishId},#{setmealId},#{dishFlavor},#{number
             <if test="setmealId != null">
                 and setmeal_id = #{setmealId}
             </if>
+            <if test="dishFlavor != null">
+                and dish_flavor = #{dishFlavor}
+            </if>
+
+
     </delete>
     <select id="getByUserId" resultType="com.sky.entity.ShoppingCart">
         select * from shopping_cart where user_id = #{userId}
