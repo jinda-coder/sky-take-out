@@ -25,4 +25,6 @@ public interface ShoppingCartMapper {
     ShoppingCart getByUserIdAndDishId(@Param("userId") Long userId,@Param("dishId") Long dishId);
 
     void deleteByShoppingCart(ShoppingCart cart);
+
+    List<ShoppingCart> getByUserId(Long UerId);
 }

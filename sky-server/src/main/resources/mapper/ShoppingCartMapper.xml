@@ -36,6 +36,7 @@ values (#{name},#{image},#{userId},#{dishId},#{setmealId},#{dishFlavor},#{number
     <select id="getByUserIdAndDishId" resultType="com.sky.entity.ShoppingCart">
         select * from shopping_cart where user_id = #{userId} and dish_id = #{dishId}
     </select>
+
     <delete id="deleteByShoppingCart">
         delete from shopping_cart where user_id = #{userId}
             <if test="dishId != null">
@@ -45,4 +46,7 @@ values (#{name},#{image},#{userId},#{dishId},#{setmealId},#{dishFlavor},#{number
                 and setmeal_id = #{setmealId}
             </if>
     </delete>
+    <select id="getByUserId" resultType="com.sky.entity.ShoppingCart">
+        select * from shopping_cart where user_id = #{userId}
+    </select>
 </mapper>
