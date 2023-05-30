@@ -49,4 +49,15 @@ public class OrderController {
         OrdersVO ordersVO = orderService.checkByOrderId(id);
         return Result.success(ordersVO);
     }
+
+    /**
+     * 取消订单
+     * @param id
+     * @return
+     */
+    @PutMapping("/cancel/{id}")
+    public Result cancelOrder(@PathVariable Long id){
+        orderService.cancelOrder(id);
+        return Result.success();
+    }
 }

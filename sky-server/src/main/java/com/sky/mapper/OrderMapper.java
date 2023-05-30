@@ -17,4 +17,6 @@ public interface OrderMapper {
     Page<OrdersVO> getByDto(OrdersPageQueryDTO dto);
 
     OrdersVO getByOrderId(Long id);
+
+    void updateOrderInfoByOrderId(Long id);
 }

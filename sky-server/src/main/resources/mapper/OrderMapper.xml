@@ -29,4 +29,7 @@
     <select id="getByOrderId" resultType="com.sky.vo.OrdersVO">
         select * from orders where id = #{orderId}
     </select>
+    <update id="updateOrderInfoByOrderId">
+        update orders set status = 6 where id = #{id}
+    </update>
 </mapper>

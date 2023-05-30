@@ -121,4 +121,9 @@ public class OrderServiceImpl implements OrderService {
         ordersVO.setOrderDetailList(orderDetailList);
         return ordersVO;
     }
+
+    @Override
+    public void cancelOrder(Long id) {
+        orderMapper.updateOrderInfoByOrderId(id);
+    }
 }
