@@ -83,4 +83,15 @@ public class OrderController {
         orderService.completeOrder(id);
         return Result.success();
     }
+
+    /**
+     * 取消订单
+     * @param orders
+     * @return
+     */
+    @PutMapping("/cancel")
+    public Result cancelOrder(@RequestBody Orders orders){
+        orderService.cancelOrder(orders);
+        return Result.success();
+    }
 }

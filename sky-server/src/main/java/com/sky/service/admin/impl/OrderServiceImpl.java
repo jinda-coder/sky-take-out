@@ -99,5 +99,14 @@ public class OrderServiceImpl implements OrderService {
     public void completeOrder(Long id) {
         orderMapper.completeOrder(id);
     }
+    /**
+     * 取消订单
+     * @param orders
+     * @return
+     */
+    @Override
+    public void cancelOrder(Orders orders) {
+        orderMapper.cancelOrder(orders);
+    }
 }
 

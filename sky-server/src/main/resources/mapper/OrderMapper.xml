@@ -101,4 +101,7 @@
     <update id="completeOrder">
         update orders set status = 5 where id = #{id}
     </update>
+    <update id="cancelOrder">
+        update orders set status = 6,cancel_reason = #{cancelReason} where id = #{id}
+    </update>
 </mapper>
