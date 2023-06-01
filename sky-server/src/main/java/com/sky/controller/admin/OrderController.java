@@ -61,4 +61,15 @@ public class OrderController {
         OrdersVO ordersVO = orderService.checkByOrderId(id);
         return Result.success(ordersVO);
     }
+
+    /**
+     * 派送订单
+     * @param id
+     * @return
+     */
+    @PutMapping("/delivery/{id}")
+    public Result deliveryOrder(@PathVariable Long id){
+        orderService.deliveryOrder(id);
+        return Result.success();
+    }
 }

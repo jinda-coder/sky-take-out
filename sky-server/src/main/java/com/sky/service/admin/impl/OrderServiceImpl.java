@@ -77,5 +77,14 @@ public class OrderServiceImpl implements OrderService {
         ordersVO.setOrderDetailList(orderDetailList);
         return ordersVO;
     }
+    /**
+     * 派送订单
+     * @param id
+     * @return
+     */
+    @Override
+    public void deliveryOrder(Long id) {
+        orderMapper.deliveryOrder(id);
+    }
 }
 

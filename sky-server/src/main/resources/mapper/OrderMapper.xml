@@ -6,13 +6,12 @@
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into orders (number, status, user_id, address_book_id, order_time,
                             pay_method, pay_status, amount, remark, phone, address, user_name,
-                            consignee,estimated_delivery_time,
+                            consignee, estimated_delivery_time,
                             delivery_status, delivery_time, pack_amount, tableware_number, tableware_status)
-                            values
-                            (#{number},#{status},#{userId},#{addressBookId},#{orderTime},
-                             #{payMethod},#{payStatus},#{amount},#{remark},#{phone},#{address},#{userName},
-                             #{consignee},#{estimatedDeliveryTime},
-                            #{deliveryStatus},#{deliveryTime},#{packAmount},#{tablewareNumber},#{tablewareStatus})
+        values (#{number}, #{status}, #{userId}, #{addressBookId}, #{orderTime},
+                #{payMethod}, #{payStatus}, #{amount}, #{remark}, #{phone}, #{address}, #{userName},
+                #{consignee}, #{estimatedDeliveryTime},
+                #{deliveryStatus}, #{deliveryTime}, #{packAmount}, #{tablewareNumber}, #{tablewareStatus})
     </insert>
     <select id="getByUserId" resultType="com.sky.vo.OrdersVO">
         select * from orders where user_id = #{userId}
@@ -27,27 +26,31 @@
         </if>
     </select>
     <select id="getByOrderId" resultType="com.sky.vo.OrdersVO">
-        select * from orders where id = #{orderId}
+        select *
+        from orders
+        where id = #{orderId}
     </select>
     <select id="selectAllOrders" resultType="com.sky.vo.OrdersVO">
         select * from orders
-            <where>
-                <if test="beginTime != null and endTime != null">
-                    and order_time between #{beginTime} and #{endTime}
-                </if>
-                 <if test="number != null">
-                      and number = #{number}
-                 </if>
-                 <if test="phone != null">
-                     and phone = #{phone}
-                 </if>
-                <if test="status != null">
-                    and status = #{status}
-                </if>
-            </where>
+        <where>
+            <if test="beginTime != null and endTime != null">
+                and order_time between #{beginTime} and #{endTime}
+            </if>
+            <if test="number != null">
+                and number = #{number}
+            </if>
+            <if test="phone != null">
+                and phone = #{phone}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
     </select>
     <update id="updateOrderInfoByOrderId">
-        update orders set status = 6 where id = #{id}
+        update orders
+        set status = 6
+        where id = #{id}
     </update>
     <update id="update" parameterType="com.sky.entity.Orders">
         update orders
@@ -80,11 +83,19 @@
         where id = #{id}
     </update>
     <update id="takeOrder">
-        update orders set status = 3
+        update orders
+        set status = 3
         where id = #{id}
     </update>
     <update id="rejectionOrder">
-        update orders set status = 6,rejection_reason = #{rejectionReason}
+        update orders
+        set status = 6,
+            rejection_reason = #{rejectionReason}
+        where id = #{id}
+    </update>
+    <update id="deliveryOrder">
+        update orders
+        set status = 4
         where id = #{id}
     </update>
 </mapper>

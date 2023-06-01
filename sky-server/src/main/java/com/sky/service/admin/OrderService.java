@@ -14,4 +14,6 @@ public interface OrderService {
     void rejectionOrder(Orders orders);
 
     OrdersVO checkByOrderId(Long id);
+
+    void deliveryOrder(Long id);
 }
