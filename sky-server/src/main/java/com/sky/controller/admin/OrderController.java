@@ -39,9 +39,26 @@ public class OrderController {
         orderService.takeOrder(orders);
         return Result.success();
     }
+
+    /**
+     * 拒单
+     * @param orders
+     * @return
+     */
     @PutMapping("/rejection")
     public Result rejectionOrder(@RequestBody Orders orders){
         orderService.rejectionOrder(orders);
         return Result.success();
+    }
+
+    /**
+     * 查询订单详情
+     * @param id
+     * @return
+     */
+    @GetMapping("/details/{id}")
+    public Result<OrdersVO> checkOrderInfo(@PathVariable Long id){
+        OrdersVO ordersVO = orderService.checkByOrderId(id);
+        return Result.success(ordersVO);
     }
 }

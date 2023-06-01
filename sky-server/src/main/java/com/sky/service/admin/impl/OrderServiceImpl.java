@@ -65,5 +65,17 @@ public class OrderServiceImpl implements OrderService {
     public void rejectionOrder(Orders orders) {
         orderMapper.rejectionOrder(orders);
     }
+    /**
+     * 查询订单详情
+     * @param id
+     * @return
+     */
+    @Override
+    public OrdersVO checkByOrderId(Long id) {
+        OrdersVO ordersVO = orderMapper.getByOrderId(id);
+        List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(id);
+        ordersVO.setOrderDetailList(orderDetailList);
+        return ordersVO;
+    }
 }
 
