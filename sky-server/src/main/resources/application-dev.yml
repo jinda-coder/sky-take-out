@@ -6,6 +6,13 @@ sky:
     database: sky_take_out
     username: root
     password: jinda111
+  redis:
+    host: localhost
+    port: 6379
+  # WeChat配置
+  wechat:
+    appid: wxe081991316242940
+    secret: d320f68cc7451e2dca30d57ca9803ac2
   # 阿里云配置
   alioss:
     endpoint: oss-cn-qingdao.aliyuncs.com

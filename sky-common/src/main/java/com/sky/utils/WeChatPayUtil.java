@@ -156,7 +156,6 @@ public class WeChatPayUtil {
 
     /**
      * 小程序支付
-     *
      * @param orderNum    商户订单号
      * @param total       金额，单位 元
      * @param description 商品描述
@@ -191,7 +190,6 @@ public class WeChatPayUtil {
             signature.initSign(PemUtil.loadPrivateKey(new FileInputStream(new File(weChatProperties.getPrivateKeyFilePath()))));
             signature.update(message);
             String packageSign = Base64.getEncoder().encodeToString(signature.sign());
-
             //构造数据给微信小程序，用于调起微信支付
             JSONObject jo = new JSONObject();
             jo.put("timeStamp", timeStamp);
