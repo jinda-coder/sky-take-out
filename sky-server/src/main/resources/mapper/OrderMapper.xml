@@ -41,6 +41,9 @@
                  <if test="phone != null">
                      and phone = #{phone}
                  </if>
+                <if test="status != null">
+                    and status = #{status}
+                </if>
             </where>
     </select>
     <update id="updateOrderInfoByOrderId">
