@@ -6,11 +6,15 @@ import com.sky.entity.Orders;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.admin.OrderService;
+import com.sky.vo.OrderStatisticsVO;
 import com.sky.vo.OrdersVO;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController("adminOrderController")
 @RequestMapping("/admin/order")
@@ -93,5 +97,10 @@ public class OrderController {
     public Result cancelOrder(@RequestBody Orders orders){
         orderService.cancelOrder(orders);
         return Result.success();
+    }
+    @GetMapping("/statistics")
+    public Result<OrderStatisticsVO> statistics(){
+        OrderStatisticsVO orderStatisticsVO = orderService.statistics();
+        return Result.success(orderStatisticsVO);
     }
 }

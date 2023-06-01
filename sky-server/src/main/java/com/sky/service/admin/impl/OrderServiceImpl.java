@@ -4,12 +4,14 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sky.dto.OrdersPageQueryDTO;
 import com.sky.entity.OrderDetail;
+import com.sky.entity.OrderStatus;
 import com.sky.entity.Orders;
 import com.sky.mapper.OrderDetailMapper;
 import com.sky.mapper.OrderMapper;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.admin.OrderService;
+import com.sky.vo.OrderStatisticsVO;
 import com.sky.vo.OrdersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Service("adminOrderService")
@@ -108,5 +112,22 @@ public class OrderServiceImpl implements OrderService {
     public void cancelOrder(Orders orders) {
         orderMapper.cancelOrder(orders);
     }
+
+    @Override
+    public OrderStatisticsVO statistics() {
+        List<OrderStatus> list = orderMapper.statistics();
+        OrderStatisticsVO orderStatisticsVO = new OrderStatisticsVO();
+        list.forEach(orderStatus -> {
+            if (orderStatus.getStatus() == 2){
+                orderStatisticsVO.setToBeConfirmed(orderStatus.getValue());
+            } else if (orderStatus.getStatus() == 3) {
+                orderStatisticsVO.setConfirmed(orderStatus.getValue());
+            } else if (orderStatus.getStatus() == 4) {
+                orderStatisticsVO.setDeliveryInProgress(orderStatus.getValue());
+            }
+        });
+        return orderStatisticsVO;
+    }
+
 }
 

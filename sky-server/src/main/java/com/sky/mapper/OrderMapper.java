@@ -2,11 +2,15 @@ package com.sky.mapper;
 
 import com.github.pagehelper.Page;
 import com.sky.dto.OrdersPageQueryDTO;
+import com.sky.entity.OrderStatus;
 import com.sky.entity.Orders;
 import com.sky.vo.OrdersVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
@@ -45,4 +49,8 @@ public interface OrderMapper {
     void completeOrder(Long id);
 
     void cancelOrder(Orders orders);
+
+    List<OrderStatus> statistics();
+
 }
+

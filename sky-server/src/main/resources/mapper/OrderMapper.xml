@@ -104,4 +104,15 @@
     <update id="cancelOrder">
         update orders set status = 6,cancel_reason = #{cancelReason} where id = #{id}
     </update>
+    <select id="statistics" resultType="orderStatus">
+        select status,count(status) value from orders group by status
+    </select>
+<!--    <select id="statistics" resultType="map">-->
+<!--        select  case status-->
+<!--                    when 2 then 'toBeConfirmed'-->
+<!--                    when 3 then 'confirmed'-->
+<!--                    else 'deliveryInProgress' end 'status',-->
+<!--                count(*)-->
+<!--        from orders o where status in(2,3,4) group by status;-->
+<!--    </select>-->
 </mapper>
