@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sky.dto.OrdersPageQueryDTO;
 import com.sky.entity.OrderDetail;
+import com.sky.entity.Orders;
 import com.sky.mapper.OrderDetailMapper;
 import com.sky.mapper.OrderMapper;
 import com.sky.result.PageResult;
@@ -45,6 +46,15 @@ public class OrderServiceImpl implements OrderService {
                 .total(page.getTotal())
                 .records(page.getResult())
                 .build();
+    }
+    /**
+     * 接单
+     * @param orders
+     * @return
+     */
+    @Override
+    public void takeOrder(Orders orders) {
+        orderMapper.updateStatus(orders);
     }
 }
 

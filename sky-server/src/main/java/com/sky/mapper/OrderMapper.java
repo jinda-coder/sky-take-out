@@ -35,4 +35,6 @@ public interface OrderMapper {
     void update(Orders orders);
 
     Page<OrdersVO> selectAllOrders(OrdersPageQueryDTO dto);
+
+    void updateStatus(Orders orders);
 }

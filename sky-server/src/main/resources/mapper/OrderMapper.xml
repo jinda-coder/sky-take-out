@@ -79,4 +79,7 @@
         </set>
         where id = #{id}
     </update>
+    <update id="updateStatus">
+        update orders set status = 3 where id = #{id}
+    </update>
 </mapper>

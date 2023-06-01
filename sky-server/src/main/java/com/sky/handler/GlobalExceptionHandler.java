@@ -40,6 +40,7 @@ public class GlobalExceptionHandler {
             String name = s[2];
             return Result.error(name + MessageConstant.ALREADY_EXISTS);
         }else{
+            e.printStackTrace();
             return Result.error(MessageConstant.UNKNOWN_ERROR);
         }
     }
