@@ -16,4 +16,6 @@ public interface OrderService {
     OrdersVO checkByOrderId(Long id);
 
     void deliveryOrder(Long id);
+
+    void completeOrder(Long id);
 }

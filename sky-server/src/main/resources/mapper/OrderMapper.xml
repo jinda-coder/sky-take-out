@@ -98,4 +98,7 @@
         set status = 4
         where id = #{id}
     </update>
+    <update id="completeOrder">
+        update orders set status = 5 where id = #{id}
+    </update>
 </mapper>

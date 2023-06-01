@@ -41,4 +41,6 @@ public interface OrderMapper {
     void rejectionOrder(Orders orders);
 
     void deliveryOrder(Long id);
+
+    void completeOrder(Long id);
 }

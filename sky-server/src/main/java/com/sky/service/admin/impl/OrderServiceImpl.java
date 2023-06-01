@@ -8,10 +8,13 @@ import com.sky.entity.Orders;
 import com.sky.mapper.OrderDetailMapper;
 import com.sky.mapper.OrderMapper;
 import com.sky.result.PageResult;
+import com.sky.result.Result;
 import com.sky.service.admin.OrderService;
 import com.sky.vo.OrdersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -85,6 +88,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deliveryOrder(Long id) {
         orderMapper.deliveryOrder(id);
+    }
+
+    /**
+     * 完成订单
+     * @param id
+     * @return
+     */
+    @Override
+    public void completeOrder(Long id) {
+        orderMapper.completeOrder(id);
     }
 }
 
