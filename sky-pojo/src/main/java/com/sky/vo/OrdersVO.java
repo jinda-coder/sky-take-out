@@ -13,5 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrdersVO extends Orders {
+    String orderDishes;
     List<OrderDetail> orderDetailList;
 }

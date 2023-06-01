@@ -29,6 +29,20 @@
     <select id="getByOrderId" resultType="com.sky.vo.OrdersVO">
         select * from orders where id = #{orderId}
     </select>
+    <select id="selectAllOrders" resultType="com.sky.vo.OrdersVO">
+        select * from orders
+            <where>
+                <if test="beginTime != null and endTime != null">
+                    and order_time between #{beginTime} and #{endTime}
+                </if>
+                 <if test="number != null">
+                      and number = #{number}
+                 </if>
+                 <if test="phone != null">
+                     and phone = #{phone}
+                 </if>
+            </where>
+    </select>
     <update id="updateOrderInfoByOrderId">
         update orders set status = 6 where id = #{id}
     </update>

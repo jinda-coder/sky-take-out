@@ -8,15 +8,15 @@ import com.sky.result.Result;
 import com.sky.service.user.OrderService;
 import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderSubmitVO;
-import com.sky.vo.OrderVO;
 import com.sky.vo.OrdersVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController("userOrderController")
 @RequestMapping("/user/order")
 @Api(tags = "订单相关接口")
 @Slf4j
@@ -93,6 +93,9 @@ public class OrderController {
                 .nonceStr("asd12e11")
                 .build();
         return Result.success(orderPaymentVO);
-
+    }
+    @GetMapping("/reminder/{id}")
+    public Result reminder(@PathVariable Long id){
+        return Result.success();
     }
 }
