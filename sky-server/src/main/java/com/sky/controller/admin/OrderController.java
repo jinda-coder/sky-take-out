@@ -39,4 +39,9 @@ public class OrderController {
         orderService.takeOrder(orders);
         return Result.success();
     }
+    @PutMapping("/rejection")
+    public Result rejectionOrder(@RequestBody Orders orders){
+        orderService.rejectionOrder(orders);
+        return Result.success();
+    }
 }

@@ -10,4 +10,6 @@ public interface OrderService {
     PageResult orderSearch(OrdersPageQueryDTO dto);
 
     void takeOrder(Orders orders);
+
+    void rejectionOrder(Orders orders);
 }

@@ -79,7 +79,12 @@
         </set>
         where id = #{id}
     </update>
-    <update id="updateStatus">
-        update orders set status = 3 where id = #{id}
+    <update id="takeOrder">
+        update orders set status = 3
+        where id = #{id}
+    </update>
+    <update id="rejectionOrder">
+        update orders set status = 6,rejection_reason = #{rejectionReason}
+        where id = #{id}
     </update>
 </mapper>

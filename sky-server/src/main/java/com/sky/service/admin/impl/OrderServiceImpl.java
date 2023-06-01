@@ -54,7 +54,16 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public void takeOrder(Orders orders) {
-        orderMapper.updateStatus(orders);
+        orderMapper.takeOrder(orders);
+    }
+
+    /**
+     * 拒单
+     * @param orders
+     */
+    @Override
+    public void rejectionOrder(Orders orders) {
+        orderMapper.rejectionOrder(orders);
     }
 }
 

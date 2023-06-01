@@ -36,5 +36,7 @@ public interface OrderMapper {
 
     Page<OrdersVO> selectAllOrders(OrdersPageQueryDTO dto);
 
-    void updateStatus(Orders orders);
+    void takeOrder(Orders orders);
+
+    void rejectionOrder(Orders orders);
 }
