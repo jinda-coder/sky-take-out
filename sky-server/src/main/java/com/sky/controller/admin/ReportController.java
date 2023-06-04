@@ -2,6 +2,8 @@ package com.sky.controller.admin;
 
 import com.sky.result.Result;
 import com.sky.service.admin.ReportService;
+import com.sky.vo.OrderReportVO;
+import com.sky.vo.OrderStatisticsVO;
 import com.sky.vo.TurnoverReportVO;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -20,10 +22,29 @@ import java.time.LocalDate;
 public class ReportController {
     @Autowired
     private ReportService reportService;
+
+    /**
+     * 营业额统计
+     * @param begin
+     * @param end
+     * @return
+     */
     @GetMapping("/turnoverStatistics")
     public Result<TurnoverReportVO> turnoverStatistics(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
         log.info("接收到的日期区间为{}到{}",begin,end);
         TurnoverReportVO vo = reportService.turnoverStatistics(begin,end);
+        return Result.success(vo);
+    }
+
+    /**
+     * 订单统计
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/ordersStatistics")
+    public Result<OrderReportVO> ordersStatistics (@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        OrderReportVO vo = reportService.ordersStatistics(begin,end);
         return Result.success(vo);
     }
 }
