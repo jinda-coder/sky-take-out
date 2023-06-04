@@ -54,6 +54,8 @@ sky:
     # 阿里云配置
   profiles:
     active: dev    #设置环境
+  shop:
+    address:山东省济南市历下区普利商务中心
 
   alioss:
     endpoint: ${sky.alioss.endpoint}

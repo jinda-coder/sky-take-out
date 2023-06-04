@@ -49,6 +49,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .excludePathPatterns("/user/shop/status");
     }
 
+
     /**
      * 通过knife4j生成接口文档
      * @return
@@ -97,6 +98,8 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/pages/**").addResourceLocations("classpath:/static/pages/");
+
     }
 
     @Override

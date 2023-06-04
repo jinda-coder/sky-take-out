@@ -41,6 +41,7 @@ public class AddressBookController {
     @PostMapping
     @ApiOperation("新增地址")
     public Result save(@RequestBody AddressBook addressBook) {
+        addressBook.setUserId(BaseContext.getCurrentId());
         addressBookService.save(addressBook);
         return Result.success();
     }

@@ -20,4 +20,6 @@ public interface OrderService {
 
     void getInfoByOrderId(Long id);
 
+    void reminder(Long id);
+
 }

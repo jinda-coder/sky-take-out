@@ -1,5 +1,6 @@
 package com.sky.service.user.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -9,10 +10,13 @@ import com.sky.dto.OrdersPageQueryDTO;
 import com.sky.dto.OrdersPaymentDTO;
 import com.sky.dto.OrdersSubmitDTO;
 import com.sky.entity.*;
+import com.sky.exception.BaseException;
 import com.sky.exception.OrderBusinessException;
 import com.sky.mapper.*;
 import com.sky.result.PageResult;
 import com.sky.service.user.OrderService;
+import com.sky.service.websocket.WebSocketServer;
+import com.sky.utils.BaiDuMapUtil;
 import com.sky.utils.WeChatPayUtil;
 import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderSubmitVO;
@@ -24,7 +28,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service("userOrderService")
@@ -41,10 +47,13 @@ public class OrderServiceImpl implements OrderService {
     private UserMapper userMapper;
     @Autowired
     WeChatPayUtil weChatPayUtil;
+    @Autowired
+    private WebSocketServer webSocketServer;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public OrderSubmitVO generateOrder(OrdersSubmitDTO dto) {
+        Long start = System.currentTimeMillis();
         //代码健壮性提升   若地址博id为空 无法生成订单
         if (dto.getAddressBookId() == null) {
             throw new OrderBusinessException(MessageConstant.ADDRESS_BOOK_IS_NULL);
@@ -66,6 +75,13 @@ public class OrderServiceImpl implements OrderService {
         if (addressBook == null) {
             throw new OrderBusinessException(MessageConstant.ADDRESS_BOOK_IS_NULL);
         }
+        //判断距离  若距离大于5公里，提示超出配送范围
+        String userAddress = addressBook.getProvinceName() + addressBook.getCityName() + addressBook.getDistrictName() + addressBook.getDetail();
+        Double distance = BaiDuMapUtil.getDistance(BaiDuMapUtil.getJingWeiDU(userAddress));
+        if (distance > 5){
+            throw new BaseException("当前配送距离为" + distance + "公里,超出配送范围，请重新下单！" );
+        }
+
         //设置收货人
         order.setConsignee(addressBook.getConsignee());
         //设置地址
@@ -87,6 +103,9 @@ public class OrderServiceImpl implements OrderService {
         orderDetailMapper.insertBatch(orderDetailList);
         //删除该用户购物车信息
         shoppingCartMapper.deleteByUserId(order.getUserId());
+        Long end = System.currentTimeMillis();
+        Long time = (end - start)/1000;
+        System.out.println("执行此方法花费时间为" + time + "秒");
         //封装VO对象  并返回
         return OrderSubmitVO.builder()
                 .orderTime(order.getOrderTime())
@@ -201,5 +220,19 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         orderMapper.update(orders);
+    }
+
+    @Override
+    public void reminder(Long id) {
+        Orders orders = orderMapper.getByOrderId(id);
+        if (orders == null) {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        }
+        //基于WebSocket实现催单
+        Map map = new HashMap();
+        map.put("type", 2);//2代表用户催单
+        map.put("orderId", id);
+        map.put("content", "订单号：" + orders.getNumber());
+        webSocketServer.sendToAllClient(JSON.toJSONString(map));
     }
 }
